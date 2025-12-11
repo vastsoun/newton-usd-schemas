@@ -50,6 +50,18 @@ stage.Export("/tmp/my_robot.usd")
 
 Once a USD layer is authored to storage, it can be loaded into a Newton runtime using [Newton's USD Parsing](https://newton-physics.github.io/newton/concepts/usd_parsing.html) mechanism.
 
+# Design Principles
+
+Newton schemas follow a minimalist approach to determine which attributes should be included, and are similar to the philosophy that [UsdPhysics](https://openusd.org/release/api/usd_physics_page_front.html#usdPhysics_purpose_and_scope) and the [Newton API](https://newton-physics.github.io/newton/api/newton.html) follow for capturing parameters that generalize across simulators. We view the Newton schemas as a proving and staging ground for physics parameters that should eventually be eligible for promotion into the UsdPhysics standard.
+
+A USD attribute belongs in the Newton schema if it meets one of these criteria:
+
+1. **Clear Physical Meaning**: The attribute represents a physically meaningful quantity rather than a modeling or approximation parameter (e.g., simulation time step `dt`, or gravitational acceleration), and is supported by at least one Newton solver.
+
+2. **Cross-Solver Support**: The attribute has a direct (or transformable) correspondence to parameters supported by at least two Newton solvers. This mainly applies to physical modeling parameters (e.g., a viscous joint friction coefficient).
+
+For solver-specific or workflow-specific parameters that are not in UsdPhysics or the Newton schema, Newton supports solver-specific schemas (e.g., [mjcPhysics](https://github.com/google-deepmind/mujoco/blob/main/src/experimental/usd/mjcPhysics/schema.usda)) or [custom attributes](https://newton-physics.github.io/newton/concepts/usd_parsing.html#custom-attribute-framework).
+
 # Contribution Guidelines
 
 Contributions from the community are welcome. See [CONTRIBUTING.md](https://github.com/newton-physics/newton-usd-schemas/blob/main/CONTRIBUTING.md) to learn about contributing via GitHub issues, as well as building the project from source and our development workflow.
