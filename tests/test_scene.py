@@ -11,7 +11,7 @@ import newton_usd_schemas  # noqa: F401
 class TestNewtonSceneAPI(unittest.TestCase):
     def setUp(self):
         self.stage: Usd.Stage = Usd.Stage.CreateInMemory()
-        self.scene: UsdPhysics.Scene = UsdPhysics.Scene.Define(self.stage, "/Scene").GetPrim()
+        self.scene: Usd.Prim = UsdPhysics.Scene.Define(self.stage, "/Scene").GetPrim()
 
     def test_api_registered(self):
         plug_type = Plug.Registry().FindTypeByName("NewtonPhysicsSceneAPI")
