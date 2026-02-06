@@ -42,7 +42,7 @@ class TestNewtonMaterialAPI(unittest.TestCase):
         attr = self.material.GetAttribute("newton:torsionalFriction")
         self.assertIsNotNone(attr)
         self.assertFalse(attr.HasAuthoredValue())
-        self.assertEqual(attr.Get(), 0)
+        self.assertAlmostEqual(attr.Get(), 0.25)
 
         success = attr.Set(0.1)
         self.assertTrue(success)
@@ -62,7 +62,7 @@ class TestNewtonMaterialAPI(unittest.TestCase):
         attr = self.material.GetAttribute("newton:rollingFriction")
         self.assertIsNotNone(attr)
         self.assertFalse(attr.HasAuthoredValue())
-        self.assertEqual(attr.Get(), 0)
+        self.assertAlmostEqual(attr.Get(), 0.0005)
 
         success = attr.Set(0.01)
         self.assertTrue(success)

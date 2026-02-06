@@ -235,7 +235,7 @@ class NewtonMaterialAPI "NewtonMaterialAPI" (
     By applying this schema, the prim also inherits the `PhysicsMaterialAPI` schema."""
 )
 {
-    float newton:torsionalFriction = 0 (
+    float newton:torsionalFriction = 0.25 (
         doc = """Torsional friction coefficient (resistance to spinning at a contact point).
 
         Range: [0, inf)
@@ -247,7 +247,7 @@ class NewtonMaterialAPI "NewtonMaterialAPI" (
         }
     )
 
-    float newton:rollingFriction = 0 (
+    float newton:rollingFriction = 0.0005 (
         doc = """Rolling friction coefficient (resistance to rolling motion).
 
         Range: [0, inf)
